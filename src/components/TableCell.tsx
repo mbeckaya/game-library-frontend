@@ -1,14 +1,14 @@
 type TableCellProps = {
     type: 'header' | 'cell';
-    text: string|number;
+    children: React.ReactNode;
 };
 
-const TableCell = ({ type, text }: TableCellProps) => {
+const TableCell = ({ type, children }: TableCellProps) => {
     const Tag = type === 'header' ? 'th' : 'td';
 
     return (
         <Tag className="border border-gray-300 p-2">
-            {text}
+            {children}
         </Tag>
     );
 };
