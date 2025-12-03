@@ -27,7 +27,7 @@ const GameListView = () => {
 
     return (
         <>
-            <h1 className="text-3xl font-bold mb-4">Game List</h1>
+            <h1 className="text-3xl font-bold mb-4">Game List ({games.length})</h1>
 
             <ErrorMessage message={errorMsg} />
 
