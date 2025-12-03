@@ -1,36 +1,41 @@
 import type { Game } from '../types/game';
+import TableCell from './TableCell';
 
-interface GameListProps {
+type GameListProps = {
     games: Game[];
 }
 
 const GameList = ({ games }: GameListProps) => {
+    if (games.length === 0) return;
+
     return (
         <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 border border-gray-200">
+            <h2 className="text-xl font-bold mb-2">Games ({games.length})</h2>
+
+            <table className="border border-gray-300 w-full">
                 <thead className="bg-gray-100">
                     <tr>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Title</th>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Platform</th>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Physical</th>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Digital</th>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Genre</th>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Publisher</th>
-                        <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Release</th>
+                        <TableCell type="header" text="Title" />
+                        <TableCell type="header" text="Platform" />
+                        <TableCell type="header" text="Physical" />
+                        <TableCell type="header" text="Digital" />
+                        <TableCell type="header" text="Genre" />
+                        <TableCell type="header" text="Publisher" />
+                        <TableCell type="header" text="Release" />
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
-                {games.map((game: Game, idx) => (
-                    <tr key={idx} className="hover:bg-gray-50">
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.title}</td>
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.platformId}</td>
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.isPhysical ? 'Yes' : 'No'}</td>
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.isDigital ? 'Yes' : 'No'}</td>
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.genreId}</td>
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.publisherId}</td>
-                        <td className="px-4 py-2 text-sm text-gray-800">{game.releaseYear}</td>
-                    </tr>
-                ))}
+                <tbody className="">
+                    {games.map((game: Game) => (
+                        <tr key={game.id}>
+                            <TableCell type="cell" text={game.title} />
+                            <TableCell type="cell" text={game.platformId} />
+                            <TableCell type="cell" text={game.isPhysical ? 'Yes' : 'No'} />
+                            <TableCell type="cell" text={game.isDigital ? 'Yes' : 'No'} />
+                            <TableCell type="cell" text={game.genreId} />
+                            <TableCell type="cell" text={game.publisherId} />
+                            <TableCell type="cell" text={game.releaseYear} />
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

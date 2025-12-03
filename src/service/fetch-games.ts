@@ -7,7 +7,8 @@ export const fetchGames = async () => {
         const response = await axios.get(url);
 
         return response.data;
-    } catch (error: unknown) {
-        console.error(error);
+    } catch (error) {
+        console.error('Failed to fetch games:', error);
+        throw error;
     }
 };
