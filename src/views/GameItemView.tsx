@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { Game } from '../types/game';
 import { getGameById } from '../service/game-service';
-import { boolToText } from '../utils/boolToText';
 import ErrorMessage from '../components/ErrorMessage';
-import GameItemEntry from '../components/GameItemEntry';
+import GameItem from '../components/GameItem';
 
 const GameItemView = ()=> {
     const [game, setGame] = useState<Game>({} as Game);
@@ -28,16 +27,7 @@ const GameItemView = ()=> {
 
             <ErrorMessage message={errorMsg}/>
 
-            <ul className="space-y-1">
-                <GameItemEntry title="ID" value={game.id} />
-                <GameItemEntry title="Title" value={game.title} />
-                <GameItemEntry title="Platform" value={game.platformId} />
-                <GameItemEntry title="Physical" value={boolToText(game.isPhysical)} />
-                <GameItemEntry title="Digital" value={boolToText(game.isDigital)} />
-                <GameItemEntry title="Genre" value={game.genreId} />
-                <GameItemEntry title="Publisher" value={game.publisherId} />
-                <GameItemEntry title="Release" value={game.releaseYear} />
-            </ul>
+            <GameItem game={game} />
         </>
     );
 }
